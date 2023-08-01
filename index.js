@@ -6,6 +6,27 @@ const app = express()
 const port = 3001
 const db = require('./queries')
 
+// Middleware to handle errors
+app.use((err, req, res, next) => {
+  console.error('Error occurred:', err);
+  res.status(500).json({ error: 'Something went wrong' });
+});
+
+// Global error handler for unhandled rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // You might want to log the error or take other actions here
+});
+
+// Global error handler for uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  // You might want to log the error or take other actions here
+
+  // Gracefully exit the process (optional)
+  // process.exit(1);
+});
+
 app.use(cors())
 
 app.use(bodyParser.json())
