@@ -54,3 +54,11 @@ app.get('/product', db.getProduct)
 app.get('/product/:id', (req, res) => {
   db.getProductById(req, res)
 })
+
+app.get('/category/:id', (req, res) => {
+  db.getCategoryById(req, res)
+})
+
+app.get('/productbyquery', (req, res) => {
+  db.getProductByCategoryId(req, res)
+})
