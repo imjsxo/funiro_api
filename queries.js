@@ -26,7 +26,7 @@ const getProduct = (request, response) => {
 }
 
 const getProductById = (request, response) => {
-    const query = "select product.id_product, product.image, product.product_name, product.product_subname, product.price, product.product_desc, product.size, product.color, product.rating, product.sku, product.additional_information,"+
+    const query = "select product.id_product, product.image, product.product_name, product.product_subname, product.price, product.product_desc, product.size, product.color, product.sku, product.additional_information,"+
         "subcategory.image as subcategory_image, subcategory.subcategory_name, category.category_name, category.image as category_image from product inner join subcategory on product.id_subcategory = subcategory.id_subcategory "+
         "inner join category on category.id_category = subcategory.id_category " +
         "where product.id_product ="+request.params.id
@@ -49,7 +49,7 @@ const getCategoryById = (request, response) => {
 }
 
 const getProductByCategoryId = (request, response) => {
-    const query = "select product.id_product, product.image, product.product_name, product.product_subname, product.price, product.product_desc, product.size, product.color, product.rating, product.sku, product.additional_information,"+
+    const query = "select product.id_product, product.image, product.product_name, product.product_subname, product.price, product.product_desc, product.size, product.color, product.sku, product.additional_information,"+
         "subcategory.image as subcategory_image, subcategory.subcategory_name, category.category_name, category.image as category_image from product inner join subcategory on product.id_subcategory = subcategory.id_subcategory "+
         "inner join category on category.id_category = subcategory.id_category " +
         "where category.id_category ="+request.query.category_id
