@@ -49,6 +49,8 @@ app.listen(port, () => {
 
 app.get('/category', db.getCategory)
 
+app.get('/subcategory', db.getSubcategory)
+
 app.get('/product', db.getProduct)
 
 app.get('/product/:id', (req, res) => {

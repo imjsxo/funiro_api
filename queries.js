@@ -16,6 +16,15 @@ const getCategory = (request, response) => {
     })
 }
 
+const getSubcategory = (request, response) => {
+    connection.query('SELECT * FROM subcategory', (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results)
+    })
+}
+
 const getProduct = (request, response) => {
     connection.query('SELECT * FROM product', (error, results) => {
         if (error) {
@@ -64,6 +73,7 @@ const getProductByCategoryId = (request, response) => {
 
 module.exports = {
     getCategory,
+    getSubcategory,
     getProduct,
     getProductById,
     getCategoryById,
