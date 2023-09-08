@@ -51,6 +51,10 @@ app.get('/category', db.getCategory)
 
 app.get('/subcategory', db.getSubcategory)
 
+app.get('/subcategory/:id', (req, res) => {
+  db.getSubcategoryByCategoryId(req, res)
+})
+
 app.get('/product', db.getProduct)
 
 app.get('/product/:id', (req, res) => {
@@ -63,4 +67,9 @@ app.get('/category/:id', (req, res) => {
 
 app.get('/productbyquery', (req, res) => {
   db.getProductByCategoryId(req, res)
+})
+
+
+app.get('/productbysubcategory', (req, res) => {
+  db.getProductBySubcategoryId(req, res)
 })

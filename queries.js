@@ -25,6 +25,15 @@ const getSubcategory = (request, response) => {
     })
 }
 
+const getSubcategoryByCategoryId = (request, response) => {
+    connection.query('SELECT * FROM subcategory where id_category = '+request.params.id, (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results)
+    })
+}
+
 const getProduct = (request, response) => {
     connection.query('SELECT * FROM product', (error, results) => {
         if (error) {
@@ -70,12 +79,27 @@ const getProductByCategoryId = (request, response) => {
     })
 }
 
+const getProductBySubcategoryId = (request, response) => {
+    const query = "select product.id_product, product.image, product.product_name, product.product_subname, product.price, product.product_desc, product.size, product.color, product.sku, product.additional_information,"+
+        "subcategory.image as subcategory_image, subcategory.subcategory_name, category.category_name, category.image as category_image from product inner join subcategory on product.id_subcategory = subcategory.id_subcategory "+
+        "inner join category on category.id_category = subcategory.id_category " +
+        "where product.id_subcategory ="+request.query.subcategory_id
+    connection.query(query, (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results)
+    })
+}
+
 
 module.exports = {
     getCategory,
     getSubcategory,
+    getSubcategoryByCategoryId,
     getProduct,
     getProductById,
     getCategoryById,
-    getProductByCategoryId
+    getProductByCategoryId,
+    getProductBySubcategoryId
 }
